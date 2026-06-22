@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Breathe with Diana, share your experience</title>
+  <link rel="icon" href="img/logo-site.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bone:#F4EFE6; --cream:#EFE7D8; --terracotta:#C97B5A; --sage:#8A8C6E;
+      --umber:#5B4636; --ochre:#D4A24C;
+      --muted:rgba(91,70,54,.62); --hairline:rgba(91,70,54,.14);
+      --serif:'Cormorant Garamond','Recoleta',Georgia,serif;
+      --sans:'Inter',system-ui,-apple-system,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{background:var(--bone);color:var(--umber);font-family:var(--sans);font-weight:400;
+      line-height:1.6;-webkit-font-smoothing:antialiased;padding:30px 18px 60px}
+    .card{background:#fff;border:1px solid var(--hairline);border-radius:20px;
+      box-shadow:0 22px 54px -34px rgba(91,70,54,.55);overflow:hidden;max-width:460px;margin:0 auto}
+    .top{height:7px;background:linear-gradient(90deg,var(--terracotta),var(--ochre))}
+    .inner{padding:30px 28px 34px}
+    .logo{display:block;width:188px;max-width:62%;height:auto;margin:0 0 20px}
+    .intro{font-family:var(--serif);font-size:25px;line-height:1.22;color:var(--umber);margin:0 0 8px;font-weight:500}
+    .sub{font-size:13.5px;color:var(--muted);margin:0 0 24px;line-height:1.5}
+
+    /* gate */
+    .gate-q{font-size:14.5px;color:var(--umber);background:rgba(212,162,76,.14);border:1px solid rgba(212,162,76,.32);
+      border-radius:12px;padding:15px 16px;margin:0 0 20px;line-height:1.5}
+    .gate-btn{display:block;width:100%;border-radius:999px;padding:15px;font-family:var(--sans);font-size:15px;
+      font-weight:500;cursor:pointer;border:none;margin-bottom:11px;transition:background .15s,transform .05s}
+    .gate-btn:active{transform:translateY(1px)}
+    .gate-btn.yes{background:var(--terracotta);color:#fff}
+    .gate-btn.yes:hover{background:#b86a4b}
+    .gate-btn.no{background:none;border:1px solid var(--umber);color:var(--umber)}
+    .gate-btn.no:hover{background:var(--umber);color:#fff}
+    .gate-fine{font-size:11.5px;color:var(--muted);text-align:center;margin:12px 0 0;line-height:1.55}
+    .backlink{font-size:12.5px;color:var(--terracotta);cursor:pointer;background:none;border:none;padding:0;
+      margin:0 0 18px;display:inline-flex;align-items:center;gap:5px;font-family:var(--sans)}
+    .backlink:hover{text-decoration:underline}
+
+    .q{margin:0 0 19px}
+    .q > label{display:block;font-size:13.5px;font-weight:500;color:var(--umber);margin-bottom:7px}
+    .q .opt{font-weight:400;color:var(--muted);font-size:11.5px}
+    .req{font-size:9.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#fff;
+      background:var(--terracotta);border-radius:999px;padding:2px 8px;margin-left:5px;vertical-align:middle}
+    input[type=text],input[type=email],input[type=number],textarea{
+      width:100%;border:1px solid var(--hairline);border-radius:9px;background:#FCFAF5;
+      padding:11px 13px;font-family:var(--sans);font-size:14px;color:var(--umber);outline:none;transition:border-color .15s,background .15s}
+    input:focus,textarea:focus{border-color:var(--terracotta);background:#fff}
+    input::placeholder,textarea::placeholder{color:rgba(91,70,54,.38)}
+    textarea{resize:vertical;min-height:84px}
+    input[type=number]{max-width:110px}
+
+    /* stars */
+    .stars{display:inline-flex;gap:4px;font-size:30px;line-height:1;cursor:pointer;user-select:none}
+    .stars span{color:rgba(91,70,54,.2);transition:color .1s}
+    .stars span.on{color:var(--ochre)}
+
+    .auth{background:rgba(201,123,90,.12);border:1px solid rgba(201,123,90,.32);border-radius:11px;
+      padding:12px 14px;font-size:12.5px;line-height:1.5;color:var(--umber);margin:4px 0 19px}
+
+    .upload{position:relative;border:1.5px dashed rgba(91,70,54,.28);border-radius:11px;padding:16px;
+      text-align:center;font-size:13px;color:var(--muted);background:#FCFAF5;cursor:pointer;transition:border-color .15s}
+    .upload:hover{border-color:var(--terracotta)}
+    .upload input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
+    .upload.has{border-color:var(--sage);color:var(--umber)}
+    .or{font-size:11.5px;color:var(--muted);text-align:center;margin:7px 0}
+
+    .optout{font-size:12px;color:var(--muted);margin-top:8px;display:flex;align-items:center;gap:7px;cursor:pointer}
+    .optout input{width:15px;height:15px;accent-color:var(--sage);flex-shrink:0}
+    .q.muted-off > label,.q.muted-off .upload,.q.muted-off input[type=text]{opacity:.42}
+
+    .appear{background:#FCFAF5;border:1px dashed var(--hairline);border-radius:9px;padding:10px 13px;
+      font-size:12.5px;color:var(--muted);margin:2px 0 18px}
+    .appear b{color:var(--umber);font-weight:600}
+
+    .send{margin-top:8px;width:100%;background:var(--terracotta);color:#fff;border:none;cursor:pointer;
+      border-radius:999px;padding:15px;font-family:var(--sans);font-size:15px;font-weight:500;letter-spacing:.01em;
+      transition:background .15s,transform .05s}
+    .send:hover{background:#b86a4b}
+    .send:active{transform:translateY(1px)}
+    .send:disabled{opacity:.6;cursor:default}
+    .err{color:#a8442a;font-size:12.5px;margin-top:10px;text-align:center;min-height:16px}
+
+    .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+    .thanks{display:none;text-align:center;padding:18px 6px 8px}
+    .thanks .tlogo{width:56px;height:56px;margin:0 auto 16px;border-radius:50%;
+      background:rgba(138,140,110,.16);display:flex;align-items:center;justify-content:center;font-size:26px}
+    .thanks h2{font-family:var(--serif);font-weight:500;font-size:27px;color:var(--umber);margin:0 0 10px}
+    .thanks p{font-size:14px;color:var(--muted);max-width:330px;margin:0 auto;line-height:1.55}
+    .privacy{font-size:11px;color:var(--muted);text-align:center;margin:18px 0 0;line-height:1.5}
+  </style>
+</head>
+<body>
+<div class="card">
+  <div class="top"></div>
+  <div class="inner">
+
+    <!-- compact brand lockup -->
+    <img class="logo" src="img/logo-site.svg" alt="Breathe with Diana">
+
+    <!-- honeypot: bots fill it, humans never see it -->
+    <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="company" tabindex="-1" autocomplete="off"></label></div>
+
+    <!-- ===================== STEP 1 · the gate ===================== -->
+    <div id="gate">
+      <p class="intro">Thank you for your trust, and for breathing with me 🤎</p>
+      <p class="sub">Breathwork has transformed my life, and sharing this work has become my mission. If this session felt meaningful or supportive for you, I’d be deeply grateful if you shared a few words about your experience. First, one quick question:</p>
+      <div class="gate-q">Would you be happy for me to share your words (your name, your photo, your Instagram) here on my website and on Instagram?<br><span style="font-size:11.5px;color:var(--muted)">Only ever what you choose here. Your email and any private details are never shared with anyone.</span></div>
+      <p style="font-size:13px;color:var(--umber);line-height:1.55;margin:0 0 16px">Your words help others feel more confident in taking their own journey, and they help this work grow and quietly find its way to the next person who’s aching for it. If you feel able to share, I’d be endlessly grateful. 🤎</p>
+      <button type="button" class="gate-btn yes" id="goPublic">Yes, I’d love to share 🤎</button>
+      <button type="button" class="gate-btn no" id="goPrivate">I’d rather keep it just for you</button>
+      <p class="gate-fine">Either way, your words come straight to me. “Just for you” simply means they’re for my eyes only, never shared anywhere.</p>
+    </div>
+
+    <!-- ===================== PUBLIC path ===================== -->
+    <form id="publicForm" style="display:none" novalidate>
+      <button type="button" class="backlink" data-back>← back</button>
+      <p class="sub" style="margin-top:-4px">Thank you, truly 🤎<br>Your face and your honest words are what help someone who’s still unsure feel they can trust this work, and take their first breath.</p>
+
+      <div class="q">
+        <label for="firstName">First name <span class="req">needed</span></label>
+        <input type="text" id="firstName" placeholder="Maria" autocomplete="given-name">
+      </div>
+
+      <div class="q">
+        <label for="age">Age <span class="opt">· optional</span></label>
+        <input type="number" id="age" placeholder="34" min="14" max="120">
+      </div>
+
+      <div class="q">
+        <label for="email">Your email <span class="opt">· stays private</span> <span class="req">needed</span></label>
+        <input type="email" id="email" placeholder="maria@…" autocomplete="email">
+      </div>
+
+      <div class="q">
+        <label for="experience">How was it for you? <span class="req">needed</span></label>
+        <textarea id="experience" placeholder="What you felt, what shifted, what you carried home with you…"></textarea>
+      </div>
+
+      <div class="q">
+        <label>How was it, in stars? <span class="req">needed</span></label>
+        <div class="stars" id="stars" role="radiogroup" aria-label="Rating out of five">
+          <span data-v="1" role="radio" aria-checked="false" aria-label="1 star">★</span>
+          <span data-v="2" role="radio" aria-checked="false" aria-label="2 stars">★</span>
+          <span data-v="3" role="radio" aria-checked="false" aria-label="3 stars">★</span>
+          <span data-v="4" role="radio" aria-checked="false" aria-label="4 stars">★</span>
+          <span data-v="5" role="radio" aria-checked="false" aria-label="5 stars">★</span>
+        </div>
+      </div>
+
+      <div class="auth">A face and a profile people can recognise are worth ten anonymous ones. Please add both if you can 🤎</div>
+
+      <div class="q" id="q-ig">
+        <label for="instagram">Your Instagram <span class="req">needed</span></label>
+        <input type="text" id="instagram" placeholder="@maria.breathes" autocomplete="off">
+        <label class="optout"><input type="checkbox" id="ig-optout"> I’d rather not share my Instagram</label>
+      </div>
+
+      <div class="q" id="q-photo">
+        <label>A photo of you <span class="req">needed</span></label>
+
+        <!-- shown only once an Instagram handle is entered -->
+        <div id="ig-photo-option" style="display:none;background:rgba(138,140,110,.12);border:1px solid rgba(138,140,110,.4);border-radius:11px;padding:12px 14px;margin-bottom:13px">
+          <label class="optout" style="margin-top:0;color:var(--umber);align-items:flex-start">
+            <input type="checkbox" id="use-ig-photo" style="margin-top:2px">
+            <span><b>Easiest, just use a photo from my Instagram</b> (<b id="ig-photo-handle">@you</b>): my profile picture or any from my feed, so I don’t have to upload anything.</span>
+          </label>
+        </div>
+
+        <div id="photo-upload-block">
+          <div class="upload" id="photo-drop">
+            <span id="photo-label">＋ add a photo</span>
+            <input type="file" id="photo" accept="image/*">
+          </div>
+          <div class="or">or</div>
+          <input type="text" id="photoLink" placeholder="paste a link to a photo">
+        </div>
+        <label class="optout"><input type="checkbox" id="photo-optout"> I’d rather not share a photo</label>
+      </div>
+
+      <div class="q">
+        <label for="videoLink">A short video review <span class="opt">· optional</span></label>
+        <input type="text" id="videoLink" placeholder="paste a link, YouTube, Drive, Instagram…">
+        <p style="font-size:12px;color:var(--muted);margin:8px 0 0;line-height:1.5">Video says so much. Easiest is to paste a link, or just send it to me on WhatsApp 🤎</p>
+      </div>
+
+      <div class="q">
+        <label for="private">What could I have done better? <span class="opt">· just for me, never shared</span></label>
+        <textarea id="private" placeholder="…" style="min-height:64px"></textarea>
+      </div>
+
+      <div class="appear" id="appear">How you’ll appear: <b id="appear-text">Maria, 34 · @maria.breathes</b></div>
+
+      <button type="submit" class="send" id="sendPublic">Send 🤎</button>
+      <div class="err" id="err"></div>
+      <p class="privacy">By sharing, you’re letting me use your words, your name &amp; age, your photo or video, and your Instagram on my website and social media. Your email and your “what could I have done better” note always stay <b>private</b>, only I ever see them.</p>
+    </form>
+
+    <!-- ===================== PRIVATE path ===================== -->
+    <form id="privateForm" style="display:none" novalidate>
+      <button type="button" class="backlink" data-back>← back</button>
+      <p class="intro" style="margin-top:-2px">Thank you 🤎</p>
+      <p class="sub">This stays just between us, nothing here is ever shared. Your honest words are a gift; they help me hold this space ever more gently.</p>
+
+      <div class="q">
+        <label for="p-name">Your name <span class="opt">· if you’d like me to know it</span></label>
+        <input type="text" id="p-name" placeholder="Maria" autocomplete="given-name">
+      </div>
+
+      <div class="q">
+        <label for="p-good">What did you take with you from our time together?</label>
+        <textarea id="p-good" placeholder="Anything you felt, noticed, or carried home with you…"></textarea>
+      </div>
+
+      <div class="q">
+        <label for="p-better">Is there anything I could have held more gently, or done differently for you?</label>
+        <textarea id="p-better" placeholder="Be honest with me, it’s how I learn to care for you better 🤎"></textarea>
+      </div>
+
+      <button type="submit" class="send" id="sendPrivate">Send 🤎</button>
+      <div class="err" id="p-err"></div>
+      <p class="privacy">For my eyes only, never shared. 🤎</p>
+    </form>
+
+    <!-- ===================== success ===================== -->
+    <div class="thanks" id="thanks">
+      <div class="tlogo">🤎</div>
+      <h2>Thank you, truly.</h2>
+      <p id="thanks-text">Your words have reached me, safely. It means more than you know.</p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // ====== CONFIG ======
+  const ENDPOINT = "https://script.google.com/macros/s/AKfycbzI4fg9jKItTJCuDwXl0Ps2A4TJfGs5A73X-46P6TgCNxuwRKXpy_DpzHTkH_lNeHcYjA/exec";
+  const SUBMIT_TOKEN = "bwd_rv_8Kx2pQ7m"; // must match Code.gs
+  const MAX_PHOTO = 10 * 1024 * 1024;     // 10 MB
+  // Video is link-only: large clips can't fit through the free no-server upload path.
+
+  const $ = id => document.getElementById(id);
+  const honeypot = () => document.querySelector('input[name=company]').value;
+
+  // ====== gate navigation ======
+  $('goPublic').addEventListener('click', ()=>{ $('gate').style.display='none'; $('publicForm').style.display='block'; });
+  $('goPrivate').addEventListener('click', ()=>{ $('gate').style.display='none'; $('privateForm').style.display='block'; });
+  document.querySelectorAll('[data-back]').forEach(b=>b.addEventListener('click', ()=>{
+    $('publicForm').style.display='none'; $('privateForm').style.display='none'; $('gate').style.display='block';
+  }));
+
+  // ====== stars ======
+  let rating = 0;
+  const starEls = [...document.querySelectorAll('#stars span')];
+  function paint(n){ starEls.forEach(s => s.classList.toggle('on', +s.dataset.v <= n)); }
+  starEls.forEach(s=>{
+    s.addEventListener('mouseenter', ()=>paint(+s.dataset.v));
+    s.addEventListener('click', ()=>{ rating = +s.dataset.v;
+      starEls.forEach(x=>x.setAttribute('aria-checked', x.dataset.v==rating)); paint(rating); });
+  });
+  $('stars').addEventListener('mouseleave', ()=>paint(rating));
+
+  // ====== opt-outs toggle required + dim ======
+  function wireOptout(boxId, qId, inputs){
+    const box=$(boxId), q=$(qId);
+    box.addEventListener('change', ()=>{
+      q.classList.toggle('muted-off', box.checked);
+      inputs.forEach(id=>{ const el=$(id); if(el){ el.disabled = box.checked; } });
+      updateAppear();
+    });
+  }
+  wireOptout('ig-optout','q-ig',['instagram']);
+  wireOptout('photo-optout','q-photo',['photo','photoLink']);
+
+  // ====== photo file label + size guard ======
+  $('photo').addEventListener('change', ()=>{
+    const f=$('photo').files[0], lab=$('photo-label'), drop=$('photo-drop');
+    if(!f){ lab.textContent='＋ add a photo'; drop.classList.remove('has'); return; }
+    if(f.size > MAX_PHOTO){
+      setErr(`That photo is a bit large (max ${Math.round(MAX_PHOTO/1024/1024)} MB). Please pick a smaller one, or paste a link instead.`);
+      $('photo').value=''; lab.textContent='＋ add a photo'; drop.classList.remove('has'); return;
+    }
+    setErr(''); lab.textContent='✓ '+f.name; drop.classList.add('has');
+  });
+
+  // ====== live "how you'll appear" ======
+  function updateAppear(){
+    const name=$('firstName').value.trim()||'Your name';
+    const age=$('age').value.trim();
+    const igOut=$('ig-optout').checked;
+    const ig=$('instagram').value.trim().replace(/^@/,'');
+    let s=name; if(age) s+=', '+age; if(!igOut && ig) s+=' · @'+ig;
+    $('appear-text').textContent=s;
+  }
+  ['firstName','age','instagram'].forEach(id=>$(id).addEventListener('input', updateAppear));
+  updateAppear();
+
+  // ====== "use a photo from my Instagram", only shows once a handle is entered ======
+  function reflectIgPhoto(){
+    const useIg=$('use-ig-photo').checked;
+    $('photo-upload-block').style.opacity = useIg ? .45 : 1;
+    if(useIg){ const po=$('photo-optout'); if(po.checked){ po.checked=false; po.dispatchEvent(new Event('change')); } }
+  }
+  function updatePhotoOptions(){
+    const igOut=$('ig-optout').checked;
+    const ig=$('instagram').value.trim().replace(/^@/,'');
+    const show=!!ig && !igOut;
+    $('ig-photo-option').style.display = show ? '' : 'none';
+    if(show){ $('ig-photo-handle').textContent='@'+ig; }
+    const useIg=$('use-ig-photo');
+    if(!show && useIg.checked){ useIg.checked=false; reflectIgPhoto(); }
+  }
+  $('use-ig-photo').addEventListener('change', ()=>{ reflectIgPhoto(); setErr(''); });
+  $('instagram').addEventListener('input', updatePhotoOptions);
+  $('ig-optout').addEventListener('change', updatePhotoOptions);
+  $('photo-optout').addEventListener('change', e=>{ if(e.target.checked){ const u=$('use-ig-photo'); if(u.checked){ u.checked=false; reflectIgPhoto(); } } });
+  updatePhotoOptions();
+
+  // ====== helpers ======
+  function setErr(m){ $('err').textContent = m||''; }
+  function readAsDataURL(file){ return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.onerror=rej; r.readAsDataURL(file); }); }
+  async function send(payload, btn, formId, thanksMsg){
+    btn.disabled=true; const old=btn.textContent; btn.textContent='Sending…';
+    try{
+      payload.token=SUBMIT_TOKEN; payload.company=honeypot(); payload.page=location.href;
+      await fetch(ENDPOINT, { method:'POST', mode:'no-cors', body: JSON.stringify(payload) });
+      $(formId).style.display='none';
+      if(thanksMsg) $('thanks-text').textContent=thanksMsg;
+      $('thanks').style.display='block';
+      window.scrollTo({top:0,behavior:'smooth'});
+    }catch(err){
+      btn.disabled=false; btn.textContent=old;
+      throw err;
+    }
+  }
+
+  // ====== PUBLIC submit ======
+  $('publicForm').addEventListener('submit', async e=>{
+    e.preventDefault(); setErr('');
+    if(honeypot()) return;
+    const v = id => $(id).value.trim();
+    const igOut=$('ig-optout').checked, photoOut=$('photo-optout').checked;
+
+    if(!v('firstName')) return setErr('Please add your first name.');
+    if(!v('email') || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v('email'))) return setErr('Please add a valid email.');
+    if(!v('experience')) return setErr('Please share a few words about your experience.');
+    if(!rating) return setErr('Please tap a star rating.');
+    if(!igOut && !v('instagram')) return setErr('Please add your Instagram, or tick “I’d rather not”.');
+    const photoFile=$('photo').files[0];
+    const useIgPhoto = !igOut && !!v('instagram') && $('use-ig-photo').checked;
+    if(!photoOut && !useIgPhoto && !photoFile && !v('photoLink')) return setErr('Please add a photo, use your Instagram photo, or tick “I’d rather not”.');
+
+    const payload = {
+      path:'public', consent:true,
+      firstName:v('firstName'), age:v('age'), email:v('email'),
+      experience:v('experience'), stars:rating,
+      instagram: igOut ? '' : v('instagram').replace(/^@/,''),
+      igOptOut:igOut, photoOptOut:photoOut, useIgPhoto:useIgPhoto,
+      photoLink:v('photoLink'), videoLink:v('videoLink'),
+      privateFeedback:v('private'),
+      appear:$('appear-text').textContent
+    };
+    if(!photoOut && !useIgPhoto && photoFile){
+      payload.photo = { name:photoFile.name, mimeType:photoFile.type, data: await readAsDataURL(photoFile) };
+    }
+    try{ await send(payload, $('sendPublic'), 'publicForm', 'Your words have reached me, safely. Thank you, this is how this work finds its way to the next person who needs it. 🤎'); }
+    catch(_){ setErr('Something went wrong sending that. Please try again, or just send me your words directly.'); }
+  });
+
+  // ====== PRIVATE submit ======
+  $('privateForm').addEventListener('submit', async e=>{
+    e.preventDefault(); $('p-err').textContent='';
+    if(honeypot()) return;
+    const good=$('p-good').value.trim(), better=$('p-better').value.trim();
+    if(!good && !better){ $('p-err').textContent='Please share a thought in either box 🤎'; return; }
+    const payload = {
+      path:'private', consent:false,
+      firstName:$('p-name').value.trim(),
+      experience: good,
+      privateFeedback: better
+    };
+    try{ await send(payload, $('sendPrivate'), 'privateForm', 'Thank you, your honest words have reached me, and only me. They truly help. 🤎'); }
+    catch(_){ $('p-err').textContent='Something went wrong sending that. Please try again.'; }
+  });
+</script>
+</body>
+</html>
